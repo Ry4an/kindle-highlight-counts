@@ -5,4 +5,3 @@ Used it to put together a [blog post with the data](https://ry4an.org/unblog/pos
 and a graph showing no real correlation:
 
 ![Highlight Frequency vs. Rating](https://ry4an.org/unblog/attachments/highlight-chart.png)
-
