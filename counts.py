@@ -1,13 +1,11 @@
 from __future__ import print_function
 import ConfigParser
 from goodreads import client
-import logging
 from bs4 import BeautifulSoup
 import sys
 import csv
 
-logging.captureWarnings(True)
-
+# Downloaded HTML for https://www.goodreads.com/notes/28705542-ry4an
 EXAMPLE_NOTES_HTML_FILE = "annotatedBookItem__knhLink.html"
 
 def get_notes_urls(filename):
@@ -36,11 +34,11 @@ def main():
 
     gc = client.GoodreadsClient(*get_api_creds())
 
-    MAX = None
+    MAX = None  # set to 1 for faster debugging
 
     books = [url_to_book_dict(url, gc) for url in get_notes_urls(EXAMPLE_NOTES_HTML_FILE)[0:MAX]]
 
-    FIELDS = "title num_pages average_rating link highlight_url ratings_count rating_dist".split()
+    FIELDS = "title book_num num_pages average_rating link highlight_url ratings_count rating_dist".split()
     writer = csv.DictWriter(sys.stdout, fieldnames=FIELDS, extrasaction='ignore')
     writer.writeheader()
     writer.writerows(books)
